@@ -1,11 +1,11 @@
 <template>
   <div id="myaudio">
-    <div>
-      <input type="file" ref="file" v-on:change="handleChangeOld" />
-      <!-- <label for="file">Choose a file to recognize</label> -->
-      <el-button v-on:click="submitUpload">Submit to recognize</el-button>
-    </div>
-    <el-divider></el-divider>
+    <!-- <div> -->
+    <!-- <input type="file" ref="file" v-on:change="handleChangeOld" /> -->
+    <!-- <label for="file">Choose a file to recognize</label> -->
+    <!-- <el-button v-on:click="submitUpload">Submit to recognize</el-button> -->
+    <!-- </div> -->
+    <!-- <el-divider></el-divider> -->
     <div>
       <!-- 参考：https://element.eleme.cn/#/zh-CN/component/upload -->
       <el-upload

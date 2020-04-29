@@ -26,19 +26,6 @@
       :failed-upload="callback"
       :bit-rate="192"
     />
-    <!-- <audio-recorder
-      upload-url="YOUR_API_URL"
-      :attempts="3"
-      :time="2"
-      :before-recording="callback"
-      :pause-recording="callback"
-      :after-recording="callback"
-      :select-record="callback"
-      :before-upload="callback"
-      :successful-upload="callback"
-      :failed-upload="callback"
-    />-->
-    <!-- <audio-player :src="mp3" v-if="!showRecorder" /> -->
     <ul>
       <li>{{sentence}}</li>
     </ul>
