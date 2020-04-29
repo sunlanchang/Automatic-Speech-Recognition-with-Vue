@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app" class="container">
+
+        <div class="large-12 medium-12 small-12 cell">
+            <input type="file" ref="file" v-on:change="handleFileUpload" />
+            <button v-on:click="submitFile">Submit</button>
+        </div>
+
+        <ul>
+            <!-- <li v-for="class_prob in class_probs">
+                [$ class_prob[1] $] ==> [$ class_prob[2]*100 $]% -->
+            <li>
+                [$ class_probs['data'] $]
+            </li>
+        </ul>
+
+    </div>
+
+</body>
+
+
+</html>
+<script>
+    var app_upload = new Vue({
+        el: '#app',
+        delimiters: ['[$', '$]'],
+        data: {
+            file: '',
+            class_probs: [],
+        },
+        methods: {
+            handleFileUpload() {
+                this.file = this.$refs.file.files[0];
+            },
+            submitFile() {
+                let formData = new FormData();
+                formData.append('data', this.file);
+
+                function getDataPromise() {
+                    return axios.post('/test',
+                        formData,
+                        {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        }
+                    ).then(function (res) {
+                        console.log('SUCCESS!!');
+                        return res.data;
+                    }).catch(function (err) {
+                        return console.error(err)
+                    });
+                };
+                //关键的一步！！！！！
+                // https://stackoverflow.com/questions/48786445/stumped-how-do-i-get-data-in-vue-from-axios-to-display
+                var self = this;
+                getDataPromise().then(function (response) {
+                    self.class_probs = response;
+                });
+            }
+        }
+    });
+
+</script>
