@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" width="20%" height="20%" />
+    <img alt="Vue logo" src="./assets/logo.png" width="10%" height="10%" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <div>
-      <myaudio></myaudio>
+    <el-divider></el-divider>
+    <div class="row">
+      <div class="col-md-6">
+        <myaudio></myaudio>
+      </div>
     </div>
     <el-divider></el-divider>
     <div class="center">

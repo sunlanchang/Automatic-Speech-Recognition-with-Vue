@@ -1,6 +1,6 @@
 <template>
   <div id="myaudio">
-    <div class="large-12 cell">
+    <div>
       <input type="file" ref="file" v-on:change="handleChangeOld" />
       <!-- <label for="file">Choose a file to recognize</label> -->
       <el-button v-on:click="submitUpload">Submit to recognize</el-button>
@@ -10,18 +10,20 @@
       <!-- 参考：https://element.eleme.cn/#/zh-CN/component/upload -->
       <el-upload
         class="upload-demo"
-        action="https://jsonplaceholder.typicode.com/posts/"
+        name="audio"
+        action="http://localhost:5000/test"
         :on-change="handleChangeNew"
         :file-list="fileList"
+        :on-success="getResponse"
       >
         <el-button slot="trigger" size="small" type="primary">点击上传</el-button>
         <!-- 下面这个el-button是参考官方其他element ui关于upload实现后加上的 -->
-        <el-button
+        <!-- <el-button
           style="margin-left: 10px;"
           size="small"
           type="success"
           v-on:click="submitUpload"
-        >上传到服务器</el-button>
+        >上传到服务器</el-button>-->
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>
     </div>
@@ -65,9 +67,11 @@ export default {
     //em-button控制选取文件
     handleChangeNew(file, fileList) {
       console.log("handleChangeNew, 文件改变");
-      this.fileList = fileList.slice(-3);
-      this.fileToUpload = this.fileList[2];
-      console.log(this.fileToUpload);
+      console.log(file);
+      console.log(fileList);
+    },
+    getResponse(response) {
+      this.class_probs = response;
     },
     //input标签和em-button共用的提交服务器函数
     submitUpload() {
