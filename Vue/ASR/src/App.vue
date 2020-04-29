@@ -2,11 +2,12 @@
   <div id="app">
     <el-container>
       <el-header>
+        <!-- 导航栏 -->
         <navigator></navigator>
       </el-header>
       <el-main>
         <img alt="Vue logo" src="./assets/logo.png" width="10%" height="10%" />
-        <!-- <el-divider></el-divider> -->
+        <!-- 使用element UI的栅格控制myaudio的宽度并居中 -->
         <el-row>
           <el-col :span="8">
             <div class="grid-content"></div>
@@ -21,6 +22,7 @@
           </el-col>
         </el-row>
         <el-divider></el-divider>
+        <!-- 对录音组件居中 -->
         <div class="center">
           <myAudioRecorder></myAudioRecorder>
         </div>
