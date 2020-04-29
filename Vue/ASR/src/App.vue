@@ -5,6 +5,7 @@
     <div>
       <myaudio></myaudio>
     </div>
+    <el-divider></el-divider>
     <div class="center">
       <myAudioRecorder></myAudioRecorder>
     </div>

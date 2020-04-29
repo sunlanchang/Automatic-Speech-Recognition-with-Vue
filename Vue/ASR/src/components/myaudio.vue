@@ -1,18 +1,21 @@
 <template>
   <div id="myaudio">
     <div class="large-12 cell">
-      <input type="file" ref="file" v-on:change="handleChange" />
+      <input type="file" ref="file" v-on:change="handleChangeOld" />
       <!-- <label for="file">Choose a file to recognize</label> -->
       <el-button v-on:click="submitUpload">Submit to recognize</el-button>
     </div>
+    <el-divider></el-divider>
     <div>
+      <!-- 参考：https://element.eleme.cn/#/zh-CN/component/upload -->
       <el-upload
         class="upload-demo"
         action="https://jsonplaceholder.typicode.com/posts/"
-        :on-change="handleChange"
+        :on-change="handleChangeNew"
         :file-list="fileList"
       >
         <el-button slot="trigger" size="small" type="primary">点击上传</el-button>
+        <!-- 下面这个el-button是参考官方其他element ui关于upload实现后加上的 -->
         <el-button
           style="margin-left: 10px;"
           size="small"
@@ -36,7 +39,7 @@ export default {
   name: "myaudio",
   data: function() {
     return {
-      file: "",
+      fileToUpload: "",
       class_probs: [],
       fileList: [
         {
@@ -53,19 +56,23 @@ export default {
     };
   },
   methods: {
-    handleChange(fileList) {
-      console.log("文件改变");
-      // console.log(typeof fileList);
-      // this.file = this.$refs.file.files[0];
-      this.file = fileList;
-      // this.file = fileList.slice(-3);
-      console.log(this.file);
+    //input标签控制选择文件
+    handleChangeOld() {
+      console.log("handleChangeOld, 文件改变");
+      this.fileToUpload = this.$refs.file.files[0];
+      console.log(this.fileToUpload);
     },
+    //em-button控制选取文件
+    handleChangeNew(file, fileList) {
+      console.log("handleChangeNew, 文件改变");
+      this.fileList = fileList.slice(-3);
+      this.fileToUpload = this.fileList[2];
+      console.log(this.fileToUpload);
+    },
+    //input标签和em-button共用的提交服务器函数
     submitUpload() {
-      // console.log(this.file);
-      // console.log(this.fileList);
       let formData = new FormData();
-      formData.append("audio", this.file);
+      formData.append("audio", this.fileToUpload);
 
       function getDataPromise() {
         return axios
