@@ -1,11 +1,5 @@
 <template>
   <div id="myaudio">
-    <!-- <div> -->
-    <!-- <input type="file" ref="file" v-on:change="handleChangeOld" /> -->
-    <!-- <label for="file">Choose a file to recognize</label> -->
-    <!-- <el-button v-on:click="submitUpload">Submit to recognize</el-button> -->
-    <!-- </div> -->
-    <!-- <el-divider></el-divider> -->
     <div>
       <!-- 参考：https://element.eleme.cn/#/zh-CN/component/upload -->
       <el-upload
@@ -17,20 +11,20 @@
         :on-success="getResponse"
       >
         <el-button slot="trigger" size="small" type="primary">点击上传</el-button>
-        <!-- 下面这个el-button是参考官方其他element ui关于upload实现后加上的 -->
-        <!-- <el-button
-          style="margin-left: 10px;"
-          size="small"
-          type="success"
-          v-on:click="submitUpload"
-        >上传到服务器</el-button>-->
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        <div slot="tip" class="el-upload__tip">受限于服务器性能，5s语音大概需要5服务器处理50s时间。</div>
       </el-upload>
     </div>
 
-    <ul>
-      <li>{{class_probs['data']}}</li>
-    </ul>
+    <!-- <ul>
+      <li>{{response_sentence}}</li>
+    </ul>-->
+    <el-input
+      :disabled="true"
+      type="textarea"
+      autosize
+      placeholder="这里显示语音识别结果..."
+      v-model="response_sentence"
+    ></el-input>
   </div>
 </template>
 
@@ -42,7 +36,7 @@ export default {
   data: function() {
     return {
       fileToUpload: "",
-      class_probs: [],
+      response_sentence: "",
       fileList: [
         {
           name: "food.jpeg",
@@ -71,7 +65,7 @@ export default {
       console.log(fileList);
     },
     getResponse(response) {
-      this.class_probs = response;
+      this.response_sentence = response["data"];
     },
     //input标签和em-button共用的提交服务器函数
     submitUpload() {

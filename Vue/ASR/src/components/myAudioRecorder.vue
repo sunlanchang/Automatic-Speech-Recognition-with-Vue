@@ -26,9 +26,14 @@
       :failed-upload="callback"
       :bit-rate="192"
     />
-    <ul>
-      <li>{{sentence}}</li>
-    </ul>
+
+    <el-input
+      :disabled="true"
+      type="textarea"
+      autosize
+      placeholder="这里显示语音识别结果..."
+      v-model="response_sentence"
+    ></el-input>
   </div>
 </template>
 
@@ -42,7 +47,7 @@ export default {
       headers: {
         "X-Custom-Header": "some data"
       },
-      sentence: ""
+      response_sentence: ""
     };
   },
   methods: {
@@ -51,7 +56,7 @@ export default {
     },
     mycallback(res) {
       // console.log("Event: ", res);
-      this.sentence = res["data"]["data"];
+      this.response_sentence = res["data"]["data"];
     },
     toggle() {
       this.showRecorder = !this.showRecorder;
