@@ -15,9 +15,6 @@
       </el-upload>
     </div>
 
-    <!-- <ul>
-      <li>{{response_sentence}}</li>
-    </ul>-->
     <el-input
       :disabled="true"
       type="textarea"
