@@ -11,7 +11,7 @@
         :on-success="getResponse"
       >
         <el-button slot="trigger" size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">受限于服务器性能，5s语音大概需要5服务器处理50s时间。</div>
+        <div slot="tip" class="el-upload__tip">受限于服务器CPU性能，5s语音大概需要服务器处理50s时间。</div>
       </el-upload>
     </div>
 
