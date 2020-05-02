@@ -6,12 +6,13 @@
         class="upload-demo"
         name="audio"
         action="http://localhost:5000/test"
+        accept=".wav, .mp3"
         :on-change="handleChangeNew"
         :file-list="fileList"
         :on-success="getResponse"
       >
-        <el-button slot="trigger" size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">受限于服务器CPU性能，5s语音大概需要服务器处理50s时间。</div>
+        <el-button slot="trigger" size="small" type="primary">点击上传并语音识别</el-button>
+        <div slot="tip" class="el-upload__tip">仅支持mp3、wav格式上传</div>
       </el-upload>
     </div>
 
@@ -36,15 +37,15 @@ export default {
       response_sentence: "",
       fileList: [
         {
-          name: "food.jpeg",
-          url:
-            "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"
-        },
-        {
-          name: "food2.jpeg",
+          name: "record.wav",
           url:
             "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"
         }
+        // {
+        //   name: "food2.jpeg",
+        //   url:
+        //     "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"
+        // }
       ]
     };
   },
@@ -79,10 +80,10 @@ export default {
           .then(function(res) {
             console.log("SUCCESS!!");
             return res.data;
+          })
+          .catch(function(err) {
+            return console.error(err);
           });
-        // .catch(function(err) {
-        //   return console.error(err);
-        // });
       }
       //关键的一步！！！！！
       // https://stackoverflow.com/questions/48786445/stumped-how-do-i-get-data-in-vue-from-axios-to-display

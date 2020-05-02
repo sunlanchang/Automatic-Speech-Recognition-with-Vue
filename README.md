@@ -113,6 +113,7 @@ The fundamental repositories:
 - Sean Naren - [Speech Recognition using DeepSpeech2](https://github.com/SeanNaren/deepspeech.pytorch)
 - [TIMIT 格式转换](https://github.com/mozilla/DeepSpeech/blob/master/bin/import_timit.py)
 - [Deep Speech介绍](https://www.youtube.com/watch?v=P9GLDezYVX4)
+- [更改音频频率](https://github.com/mozilla/DeepSpeech/pull/1203)
 
 Moreover, you can explore the GitHub using key phrases like `ASR`, `DeepSpeech`, or `Speech-To-Text`.
 The list [wer_are_we](https://github.com/syhw/wer_are_we), an attempt at tracking states of the art,

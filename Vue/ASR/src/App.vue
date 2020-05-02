@@ -1,35 +1,35 @@
 <template>
-  <div id="app">
-    <el-container>
-      <el-header>
-        <!-- 导航栏 -->
-        <navigator></navigator>
-      </el-header>
-      <el-main>
-        <img alt="Vue logo" src="./assets/logo.png" width="10%" height="10%" />
-        <!-- 使用element UI的栅格控制myaudio的宽度并居中 -->
-        <el-row>
-          <el-col :span="8">
-            <div class="grid-content"></div>
-          </el-col>
-          <el-col :span="8">
-            <div class="grid-content">
-              <myaudio></myaudio>
-            </div>
-          </el-col>
-          <el-col :span="8">
-            <div class="grid-content"></div>
-          </el-col>
-        </el-row>
-        <el-divider></el-divider>
-        <!-- 对录音组件居中 -->
-        <div class="center">
-          <myAudioRecorder></myAudioRecorder>
-        </div>
-      </el-main>
-      <el-footer></el-footer>
-    </el-container>
-  </div>
+  <!-- <div id="app"> -->
+  <el-container>
+    <el-header>
+      <!-- 导航栏 -->
+      <navigator></navigator>
+    </el-header>
+    <el-main>
+      <img alt="Vue logo" src="./assets/logo.png" width="10%" height="10%" />
+      <!-- 使用element UI的栅格控制myaudio的宽度并居中 -->
+      <el-row>
+        <el-col :span="8">
+          <div class="grid-content"></div>
+        </el-col>
+        <el-col :span="8">
+          <div class="grid-content">
+            <myaudio></myaudio>
+          </div>
+        </el-col>
+        <el-col :span="8">
+          <div class="grid-content"></div>
+        </el-col>
+      </el-row>
+      <el-divider></el-divider>
+      <!-- 对录音组件居中 -->
+      <div class="center">
+        <myAudioRecorder></myAudioRecorder>
+      </div>
+    </el-main>
+    <el-footer></el-footer>
+  </el-container>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -68,6 +68,12 @@ export default {
   margin: 0 auto;
   border: 0px solid red;
 }
+img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 .el-row {
   margin-bottom: 20px;
   &:last-child {
