@@ -36,23 +36,23 @@ def hello_world():
     print('v'*100)
     print(request.files)
     print('^'*100)
-    # img_file = request.files['audio']
+    img_file = request.files['audio']
     # # 保存图片并读取
-    # filepath = os.path.join('/tmp', img_file.filename)
-    # img_file.save(filepath)
+    filepath = os.path.join('/tmp', img_file.filename)
+    img_file.save(filepath)
 
-    # if filepath.endswith('mp3'):
-    #     wav_filename = img_file.filename.split('.')[0]+'.wav'
-    #     wav_file_path = os.path.join('/tmp', wav_filename)
-    #     mp3 = AudioSegment.from_mp3(filepath)
-    #     mp3.export(wav_file_path, format="wav")
-    #     filepath = wav_file_path
+    if filepath.endswith('mp3'):
+        wav_filename = img_file.filename.split('.')[0]+'.wav'
+        wav_file_path = os.path.join('/tmp', wav_filename)
+        mp3 = AudioSegment.from_mp3(filepath)
+        mp3.export(wav_file_path, format="wav")
+        filepath = wav_file_path
 
-    # sample = asr.utils.read_audio(filepath)
-    # pipeline = asr.load('deepspeech2', lang='en')
-    # sentences = pipeline.predict([sample])
+    sample = asr.utils.read_audio(filepath)
+    pipeline = asr.load('deepspeech2', lang='en')
+    sentences = pipeline.predict([sample])
 
-    sentences = ['hello sunlanchang']
+    # sentences = ['hello sunlanchang']
     print('v'*100)
     print(sentences)
     print('^'*100)
