@@ -21,7 +21,14 @@
       type="textarea"
       autosize
       placeholder="这里显示语音识别结果..."
-      v-model="response_sentence"
+      v-model="response_en_sentence"
+    ></el-input>
+    <el-input
+      :disabled="true"
+      type="textarea"
+      autosize
+      placeholder="这里显示翻译结果..."
+      v-model="response_zh_sentence"
     ></el-input>
   </div>
 </template>
@@ -34,7 +41,8 @@ export default {
   data: function() {
     return {
       fileToUpload: "",
-      response_sentence: "",
+      response_en_sentence: "",
+      response_zh_sentence: "",
       fileList: [
         {
           name: "record.wav",
@@ -54,16 +62,19 @@ export default {
     handleChangeOld() {
       console.log("handleChangeOld, 文件改变");
       this.fileToUpload = this.$refs.file.files[0];
-      console.log(this.fileToUpload);
+      // console.log(this.fileToUpload);
     },
     //em-button控制选取文件
     handleChangeNew(file, fileList) {
       console.log("handleChangeNew, 文件改变");
-      console.log(file);
-      console.log(fileList);
+      console.debug(file);
+      console.debug(fileList);
     },
     getResponse(response) {
-      this.response_sentence = response["data"];
+      this.response_en_sentence = response["en_sentence"];
+      this.response_zh_sentence = response["zh_sentence"];
+      console.log(this.response_en_sentence);
+      console.log(this.response_zh_sentence);
     },
     //input标签和em-button共用的提交服务器函数
     submitUpload() {

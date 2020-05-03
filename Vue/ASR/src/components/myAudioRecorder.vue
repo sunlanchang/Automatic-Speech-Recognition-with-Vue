@@ -32,7 +32,14 @@
       type="textarea"
       autosize
       placeholder="这里显示语音识别结果..."
-      v-model="response_sentence"
+      v-model="response_en_sentence"
+    ></el-input>
+    <el-input
+      :disabled="true"
+      type="textarea"
+      autosize
+      placeholder="这里显示翻译结果..."
+      v-model="response_zh_sentence"
     ></el-input>
   </div>
 </template>
@@ -47,7 +54,8 @@ export default {
       headers: {
         "X-Custom-Header": "some data"
       },
-      response_sentence: ""
+      response_en_sentence: "",
+      response_zh_sentence: ""
     };
   },
   methods: {
@@ -56,7 +64,8 @@ export default {
     },
     mycallback(res) {
       // console.log("Event: ", res);
-      this.response_sentence = res["data"]["data"];
+      this.response_en_sentence = res["data"]["en_sentence"];
+      this.response_zh_sentence = res["data"]["zh_sentence"];
     },
     toggle() {
       this.showRecorder = !this.showRecorder;
