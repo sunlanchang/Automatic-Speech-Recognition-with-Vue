@@ -12,6 +12,7 @@ from flask import Flask, request, jsonify, render_template
 import shlex
 import subprocess
 import wave
+from BaiduTransAPI_forPython3 import transToChineseAPI
 if True:
     sys.path.append("..")
     import automatic_speech_recognition as asr
@@ -66,11 +67,17 @@ def hello_world():
     pipeline = asr.load('deepspeech2', lang='en')
     sentences = pipeline.predict([sample])
 
-    # sentences = ['hello sunlanchang']
+    # sentences = ['hello world']
+    try:
+        zh = transToChineseAPI(sentences[0])
+        zh_sentence = zh['trans_result'][0]['dst']
+    except:
+        print('翻译出错')
+
     print('v'*100)
-    print(sentences)
+    print({'en_sentence': sentences[0], 'zh_sentence': zh_sentence})
     print('^'*100)
-    return {'data': sentences[0]}
+    return {'en_sentence': sentences[0], 'zh_sentence': zh_sentence}
 
 # @app.route('/imageclassifier/predict/', methods=['GET'])
 # def image_classifier_():
