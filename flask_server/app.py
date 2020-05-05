@@ -17,8 +17,8 @@ if True:
     sys.path.append("..")
     import automatic_speech_recognition as asr
 
-# from keras.applications import inception_v3
-# from keras.preprocessing import image
+# 预测时只创建一次计算图
+pipeline = asr.load('deepspeech2', lang='en')
 
 
 def convert_samplerate(audio_path, output_path):
@@ -64,7 +64,7 @@ def hello_world():
         filepath = wav_file_path_16KHZ
 
     sample = asr.utils.read_audio(filepath)
-    pipeline = asr.load('deepspeech2', lang='en')
+    # pipeline = asr.load('deepspeech2', lang='en')
     sentences = pipeline.predict([sample])
 
     # sentences = ['hello world']
