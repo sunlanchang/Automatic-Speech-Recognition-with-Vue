@@ -13,12 +13,10 @@ import shlex
 import subprocess
 import wave
 from BaiduTransAPI_forPython3 import transToChineseAPI
+from ASR_service import ASR_Service
 if True:
     sys.path.append("..")
     import automatic_speech_recognition as asr
-
-# 预测时只创建一次计算图
-pipeline = asr.load('deepspeech2', lang='en')
 
 
 def convert_samplerate(audio_path, output_path):
@@ -63,8 +61,10 @@ def hello_world():
 
         filepath = wav_file_path_16KHZ
 
-    sample = asr.utils.read_audio(filepath)
+    # 预测时只创建一次计算图
     # pipeline = asr.load('deepspeech2', lang='en')
+    pipeline = ASR_Service()
+    sample = asr.utils.read_audio(filepath)
     sentences = pipeline.predict([sample])
 
     # sentences = ['hello world']
@@ -79,36 +79,11 @@ def hello_world():
     print('^'*100)
     return {'en_sentence': sentences[0], 'zh_sentence': zh_sentence}
 
-# @app.route('/imageclassifier/predict/', methods=['GET'])
-# def image_classifier_():
-#     # return render_template('form.html')
-#     pass
 
-
-# @app.route('/imageclassifier/predict/', methods=['POST'])
-# def image_classifier():
-    # Decoding and pre-processing base64 image
-    # img = image.img_to_array(image.load_img(BytesIO(base64.b64decode(request.form['b64'])),
-    #                                         target_size=(224, 224))) / 255.
-    # this line is added because of a bug in tf_serving < 1.11
-    # img = img.astype('float16')
-
-    # Creating payload for TensorFlow serving request
-    # payload = {
-    #     "instances": [{'input_image': img.tolist()}]
-    # }
-
-    # # Making POST request
-    # r = requests.post(
-    #     'http://localhost:8501/v1/models/my_image_classifier:predict', json=payload)
-
-    # # Decoding results from TensorFlow Serving server
-    # pred = json.loads(r.content.decode('utf-8'))
-    # print('*'*50)
-    # print(inception_v3.decode_predictions(np.array(pred['predictions']))[0])
-    # print('*'*50)
-    # # Returning JSON response to the frontend
-    # tmp = jsonify(inception_v3.decode_predictions(
-    #     np.array(pred['predictions']))[0])
-    # return render_template('signin-ok.html', username=tmp)
-    # pass
+if __name__ == "__main__":
+    app.debug = True
+    app.run(host='0.0.0.0',
+            port=5000,
+            # ssl_context='adhoc',
+            # ssl_context=('cert.pem', 'key.pem'),
+            )
