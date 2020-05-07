@@ -1,6 +1,3 @@
-### 总体架构
-
-![流程图](img/流程图.png)
 
 ### Automatic Speech Recognition
 
