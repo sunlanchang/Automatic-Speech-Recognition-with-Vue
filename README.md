@@ -1,7 +1,7 @@
 ### 总体架构
 
 前端使用Vue，后端使用Falsk，总体架构如下：
-![流程图](img/流程图.png)
+![流程图](img/流程图小.png)
 
 ```bash
 # tree -L 1
@@ -19,6 +19,7 @@
 ├── flask_server                 # 后端Flask
 ├── img
 ├── predict.py                   # 模型预测
+├── papers                       # 参考论文
 ├── run.sh
 ├── setup.py
 ├── tests
