@@ -1,8 +1,6 @@
 import numpy as np
 import tensorflow as tf
 import automatic_speech_recognition as asr
-import ipdb
-# ipdb.set_trace()
 # dataset = asr.dataset.Audio.from_csv('data/train.csv', batch_size=32)
 # dev_dataset = asr.dataset.Audio.from_csv('dev.csv', batch_size=32)
 dataset = asr.dataset.Audio.from_csv('data/TIMIT/timit_test.csv', batch_size=2)
@@ -21,8 +19,8 @@ model = asr.model.get_deepspeech2(
     rnn_units=800,
     is_mixed_precision=False
 )
-model.load_weights(
-    'automatic_speech_recognition/load/models/en-deepspeech2-weights-0.1.h5')
+# model.load_weights(
+#     'automatic_speech_recognition/load/models/en-deepspeech2-weights-0.1.h5')
 optimizer = tf.optimizers.Adam(
     lr=1e-4,
     beta_1=0.9,
