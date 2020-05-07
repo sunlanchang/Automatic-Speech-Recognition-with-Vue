@@ -1,5 +1,6 @@
 ### 总体架构
 
+前端使用Vue，后端使用Falsk，总体架构如下：
 ![流程图](img/流程图.png)
 
 ### Automatic Speech Recognition
