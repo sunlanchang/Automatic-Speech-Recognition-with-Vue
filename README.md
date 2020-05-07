@@ -3,6 +3,30 @@
 前端使用Vue，后端使用Falsk，总体架构如下：
 ![流程图](img/流程图.png)
 
+```bash
+# tree -L 1
+├── LICENSE
+├── MANIFEST.in
+├── README.md
+├── README_en.md
+├── Vue                          # 前端Vue
+├── automatic_speech_recognition # 模型的构建
+├── checkpoint                   # 保存checkpoint
+├── data                         # 训练数据
+├── environment-gpu.yml
+├── environment.yml
+├── examples
+├── flask_server                 # 后端Flask
+├── img
+├── predict.py                   # 模型预测
+├── run.sh
+├── setup.py
+├── tests
+├── train.py                     # 模型的训练
+├── transfer
+└── utils
+```
+
 ### Automatic Speech Recognition
 
 使用`tensorflow==2.1.0`，预测过程如下所示，注意音频需要是16kHz。
@@ -75,7 +99,7 @@ print(f'WER: {wer}   CER: {cer}')
 
 <br>
 
-#### References
+#### 参考
 
 The fundamental repositories:
 - Baidu - [DeepSpeech2 - A PaddlePaddle implementation of DeepSpeech2 architecture for ASR](https://github.com/PaddlePaddle/DeepSpeech)
